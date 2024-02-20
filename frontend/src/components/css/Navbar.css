@@ -1,0 +1,64 @@
+.xxx{
+    background-color: #F1D9D9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+align-items: center;
+justify-content: space-between;
+padding-left: 40px;
+padding-right: 20px;
+-webkit-box-shadow: inset -1px -10px 5px -30px #000000;
+box-shadow: inset -1px -10px 5px -11px #000000;
+
+}
+
+.list{
+
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;}
+
+.salone:hover{
+    width: 140px;
+    background: #979676;
+    transition: 0.5s;
+    color: #ffffff;  
+    height: 90px;
+}
+
+
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.vl {
+    border-left:0px solid #7a7a7a;
+    padding: 55px;
+    height:55px;
+}
+.logoo{
+    display: flex;
+    flex-direction: row;
+    
+    width: 100px;
+    min-height: 100px;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/logo.jpg);
+    
+    
+}
+.button1{
+    border: 0cap;
+    width: 100px;
+    border-radius: 5px;
+    height: 40px;
+}
+.button1:hover{
+    background: #979676;
+    transition: 0.5s;
+}
+

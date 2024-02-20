@@ -1,0 +1,43 @@
+.hero-image31{
+    background-image:url("../images/team.png");
+  size: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  }
+  .group3{
+  background-color: #f8c9c944;
+  width:400px;
+  height: 400px;
+  text-align: center;
+  margin-left: 1170px;
+  margin-top: 230px;
+  border-radius: 40px;
+  position: absolute;
+
+
+}
+  .hero-text31 {
+    
+    height: 1000px;
+   
+   padding-right: 1200px;
+    text-align: center;
+    
+    padding-top: 200px;
+    color: rgb(255, 255, 255);
+    position: relative;
+  }
+  
+  .font-title31{
+    font-size: 100px;
+    
+    font-family: "Times New Roman", Times, serif;
+  }
+  .fade-in-imagee { animation: fadeIn 5s; }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }

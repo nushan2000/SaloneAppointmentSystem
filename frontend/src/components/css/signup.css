@@ -1,0 +1,66 @@
+.signup{
+    height: 700px;
+    background-image:url("../images/sig.jpg");
+
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+    
+}
+.row62{
+  
+  background-color: #ffffff00;
+  border-radius: 20px;
+  margin-left: 350px;
+  margin-right: 400px;
+ height: 600px;
+ padding-top: 40px;
+}
+.column71 {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  height: 500px; 
+  background-color: #ffffff00;
+  border-radius: 20px 0px 0px 20px;
+  
+}
+.column72 {
+    float: left;
+    width: 50%;
+    padding: 0px;
+    padding-top: 0;
+    height: 500px; 
+    background-color: #ffffff00;
+    border-radius: 0px 20px 20px 0px;
+    padding-right: 30px;
+    
+  }
+  
+.img-log71{
+  height: 60px;
+  padding-left: 40%;
+  
+  
+  
+}
+.img71{
+    position: absolute;
+    height: 550px;
+    border-radius: 15px;
+    border: #000000;
+    padding-top: 30px;
+
+}
+.text71{
+    color: #000000;
+    
+    position: absolute;
+    padding-left: 8%;
+    padding-top: 250px;
+    
+    
+
+    
+}

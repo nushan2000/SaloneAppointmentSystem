@@ -1,0 +1,65 @@
+.reservation{
+  height: 1400px;
+}
+
+.page{
+    padding-top: 50px;
+    padding-left: 100px;
+    padding-right: 500px;
+}
+.text42{
+padding-top: 10px;
+}
+.column41 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 600px; 
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    
+  }
+  .row41{
+    position: relative;
+    padding: 20px;
+  }
+  .row41:after {
+    position: relative;
+    content: "";
+    display: table;
+    clear: both;
+      
+  }
+ .img41{
+    
+    height: 500px;
+ } 
+
+ .text41{
+    padding-top: 200px;
+ }
+.k{
+  position: absolute;
+  
+}
+.form{
+  position: relative;
+}
+.ll{
+  text-align: left;
+  width: 600px;
+}
+.kk{
+  margin-left: 200px;
+}
+.x{
+  background-color: rgba(0, 0, 0, 0.099);
+  height: 750px;
+  
+  
+  padding-top: 30px;
+}
+.label1{
+  padding-left: 0px;
+  margin-left: -100px;
+}

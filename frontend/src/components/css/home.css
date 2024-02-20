@@ -1,0 +1,368 @@
+.hero-image{
+    background-image:url("../images/home.png");
+  size: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+.group{
+  background-color: #f8c9c944;
+  width:400px;
+  height: 400px;
+  text-align: center;
+  margin-left: 1170px;
+  margin-top: 230px;
+  border-radius: 40px;
+  position: absolute;
+
+
+}
+.fade-in-image { animation: fadeIn 5s; }
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.img11 {
+  width: 200px; /* Set the initial width of the container */
+  transition: transform 0.3s; /* Add a smooth transition for the transform property */
+}
+
+
+
+.img11:hover {
+  transform: scale(1.2); /* Enlarge the image on hover (1.2 times its original size) */
+}
+
+
+
+.hero-text {
+    
+    height: 1100px;
+    padding-left: 1250px;
+    padding-top: 100px;
+    top: 250px;
+    color: rgb(0, 0, 0);
+    position: relative;
+  }
+  .font-title{
+    font-size: 48px;
+    position: relative;
+    font-family: "Times New Roman", Times, serif;
+  }
+  .button-5 {
+    
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #F8C9C9;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    box-sizing: border-box;
+    color: #322121;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 41px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #854e4e;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    text-decoration-color: white;
+    color: white;
+  }
+  
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #F8C9C9;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+  .text2{
+    font-size: 32px;
+    padding-left: 100px;
+    padding-right: 100px;
+    
+    text-align: center;
+    font-family: "Inria Serif", Times, serif;
+    position: relative;
+    
+  }
+
+
+@media screen {
+    .carousel-inner{
+        display: flex;
+        padding-top: 1cm;
+        padding-right: 100px;
+        
+        
+    }
+    .carousel-item{
+        display: block;
+        padding-left: 120px;
+        padding-right: 120px;
+        
+        
+        margin: 05px;
+        
+       
+    }
+    
+}
+
+.home2{
+  position: relative;
+  align-items: center;
+  margin: 20px;
+  padding-left: 355px;
+  
+  
+  
+  
+}
+.color{
+    background-color: rgba(0, 0, 0, 0.302);
+    height: 250px;
+    size: 100%;
+    padding-left: 7%;
+    
+  
+  
+}
+
+.yy{
+     
+    
+  width: 150px;
+   height: 150px;
+   border-radius: 50px;
+   box-shadow: rgba(0, 0, 0, 0.1) 0 20px 12px;
+}
+.nextt{
+    padding-left: 100px;
+}
+
+.image{
+    margin: 0%;
+    width: 50%;
+    position: relative;
+    
+}
+.secondimg{
+    
+    padding-top: 70px;
+    position :absolute;
+}
+* {
+    box-sizing: border-box;
+  }
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 600px; 
+  }
+  .rowww{
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .rowww:after {
+    position: relative;
+    content: "";
+    display: table;
+    clear: both;
+    
+    
+    
+  }
+  
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }}
+.imgg{
+
+    width: 100%;
+}
+.coll{
+    padding-top: 220px;
+}
+
+.column1 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 100px; /* Should be removed. Only for demonstration */
+  }
+  
+  .row1{
+    background-color: #00000039;
+    position: relative;
+   padding-left: 100px;
+   padding-right: 50px;
+   margin-top: 200px;
+   margin-bottom: 50px;
+   height: 450px;
+   
+  }
+  /* Clear floats after the columns */
+  .row1:after {
+    content: "";
+    
+    display: table;
+    clear: both;
+  }
+
+  .btn-group .button {
+    background-color: #F8C9C9; /* Green */
+    border: 1px solid green;
+    color: rgb(0, 0, 0);
+    
+    
+    text-align: center;
+    text-decoration: none;
+    
+    font-size: 25px;
+    cursor: pointer;
+    justify-content: center;
+    
+  width: 60%;
+ 
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 20px 12px;
+
+    
+  }
+  .button{
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 60px;
+  }
+  .row2{
+    margin-bottom: 100px;
+    margin-left: 98px;
+    margin-right: 98px;
+  }
+
+  .boxx{
+    
+   
+    
+    background-color:#f8c9c97a;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    position: relative;
+    margin: 20px;
+   
+    height: 220px;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-top: 30px;
+    border-radius: 20px;
+    
+    
+  }
+  .boxx-back{
+   
+    background-image:url("../images/boxxx.jpg");
+    
+  }
+  
+  .tex{
+    padding: 0%;
+  }
+  .coll{
+    height: 200px;
+  }
+  .h{
+    position: absolute;
+    opacity: 0.1;
+  }
+  .btn-one::before {
+	left: 4px;
+	z-index: 1;
+  
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.1, 1);
+}
+
+.btn-one:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+.btn-one::after {
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-one:hover::after {
+  transform: scale(1, .1);
+  opacity: 0;
+}
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #f8c9c97c;
+  overflow: hidden;
+  width: 80%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.container:hover .overlay {
+  height: 110%;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
