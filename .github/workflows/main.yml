@@ -1,0 +1,69 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Run tests
+      env:
+        MONGO_URL: mongodb://localhost:27017/test
+      run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Deploy to EC2
+      env:
+        KEY: ${{ secrets.AWS_KEY }}
+        SECRET: ${{ secrets.AWS_SECRET }}
+        HOST: ${{ secrets.EC2_HOST }}
+        USER: ubuntu
+        PEM_FILE_NAME: ${{ secrets.PEM_FILE_NAME }}
+        PEM_FILE: ${{ secrets.PEM_FILE }}
+      run: |
+        echo "${{ env.PEM_FILE }}" > ${{ env.PEM_FILE_NAME }}
+        chmod 400 ${{ env.PEM_FILE_NAME }}
+        scp -i ${{ env.PEM_FILE_NAME }} -r ./* ${{ env.USER }}@${{ env.HOST }}:/path/to/your/application
+        ssh -i ${{ env.PEM_FILE_NAME }} ${{ env.USER }}@${{ env.HOST }} "cd /path/to/your/application && npm install && pm2 restart all"
