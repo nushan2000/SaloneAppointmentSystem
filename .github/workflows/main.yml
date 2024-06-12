@@ -1,74 +1,68 @@
-name: CI/CD Pipeline
+name: Deploy to EC2 with CodeDeploy
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    services:
-      mongodb:
-        image: mongo:4.4
-        ports:
-          - 27017:27017
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-      working-directory: frontend
-
-    - name: Build
-      run: |
-        npm run build || (tail -n 100 /home/runner/.npm/_logs/$(date +"%Y-%m-%dT%H_%M_%S_")-debug.log && exit 1)
-      working-directory: frontend
-
-    - name: Run tests
-      env:
-        MONGO_URL: mongodb://localhost:27017/test
-      run: npm test
-      working-directory: frontend
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: Set up Node.js for frontend
       uses: actions/setup-node@v2
       with:
         node-version: '14'
 
-    - name: Install dependencies
+    - name: Install frontend dependencies
       run: npm install
       working-directory: frontend
 
-    - name: Deploy to EC2
+    - name: Build the frontend
+      run: npm run build
+      working-directory: frontend
+
+    - name: Set up Node.js for backend
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install backend dependencies
+      run: npm install
+      working-directory: backend
+
+    - name: Build the backend
+      run: npm run build
+      working-directory: backend
+
+    - name: Deploy to EC2 with CodeDeploy for frontend
       env:
-        KEY: ${{ secrets.AWS_KEY }}
-        SECRET: ${{ secrets.AWS_SECRET }}
-        HOST: ${{ secrets.EC2_HOST }}
-        USER: ubuntu
-        PEM_FILE_NAME: ${{ secrets.PEM_FILE_NAME }}
-        PEM_FILE: ${{ secrets.PEM_FILE }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET }}
+        AWS_REGION: 'your-aws-region'
+        APPLICATION_NAME: 'your-frontend-application-name'
+        DEPLOYMENT_GROUP_NAME: 'your-frontend-deployment-group-name'
       run: |
-        echo "${{ env.PEM_FILE }}" > ${{ env.PEM_FILE_NAME }}
-        chmod 400 ${{ env.PEM_FILE_NAME }}
-        scp -i ${{ env.PEM_FILE_NAME }} -r frontend/* ${{ env.USER }}@${{ env.HOST }}:/path/to/your/application
-        ssh -i ${{ env.PEM_FILE_NAME }} ${{ env.USER }}@${{ env.HOST }} "cd /path/to/your/application && npm install && pm2 restart all"
+        aws deploy create-deployment \
+          --application-name $APPLICATION_NAME \
+          --deployment-group-name $DEPLOYMENT_GROUP_NAME \
+          --s3-location bucket=my-bucket,key=my-key,bundleType=zip \
+          --region $AWS_REGION
+
+    - name: Deploy to EC2 with CodeDeploy for backend
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET }}
+        AWS_REGION: 'your-aws-region'
+        APPLICATION_NAME: 'your-backend-application-name'
+        DEPLOYMENT_GROUP_NAME: 'your-backend-deployment-group-name'
+      run: |
+        aws deploy create-deployment \
+          --application-name $APPLICATION_NAME \
+          --deployment-group-name $DEPLOYMENT_GROUP_NAME \
+          --s3-location bucket=my-bucket,key=my-key,bundleType=zip \
+          --region $AWS_REGION
