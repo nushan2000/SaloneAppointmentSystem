@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import axios from 'axios';
 
 const UpdateWindow = () => {
@@ -29,7 +28,7 @@ const UpdateWindow = () => {
     
       // Send a PUT request to update the customer data
       await axios.put(
-        `http://localhost:8070/customer/update/${editedCustomer._id}`,editedCustomer
+        `http://localhost:8070/customer/update/${editedCustomer._id}`, editedCustomer
       );
       console.log("Customer updated successfully.");
 
@@ -39,8 +38,6 @@ const UpdateWindow = () => {
       console.error("Error updating customer:", error);
     }
   };
-
- 
 
   return (
     <div className="nushan">
@@ -109,20 +106,5 @@ const UpdateWindow = () => {
     </div>
   );
 };
-
-const Container = styled.div`
-  height: 100px;
-  width: 30%;
-  top: 25%;
-  right: 50%;
-  margin-right: 100px;
-  justify-content: center;
-  align-items: center;
-  background-color: #f4abab;
-  position: relative;
-  display: flex;
-  border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2);
-`;
 
 export default UpdateWindow;
