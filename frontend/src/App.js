@@ -2,22 +2,22 @@
 import './App.css';
 
 import {BrowserRouter as Router,Route, Routes} from "react-router-dom";
-import About from './components/About';
-import Navbar from './components/Navbar';
-import AddReservation from './components/Reservation';
-import home from './components/home';
-import Footer from './components/Footer';
-import Services from './components/Services';
-import Team from './components/Team';
-import policies from './components/Policies';
-import Signin from './components/Signin';
-import Signup from './components/signup';
-import admin from './components/admin';
-import customer from './components/customer';
+import About from './components/About.js';
+import Navbar from './components/Navbar.js';
+import AddReservation from './components/Reservation.js';
+import home from './components/home.js';
+import Footer from './components/Footer.js';
+import Services from './components/Services.js';
+import Team from './components/Team.js';
+import policies from './components/Policies.js';
+import Signin from './components/Signin.js';
+import Signup from './components/signup.js';
+import admin from './components/admin.js';
+import customer from './components/customer.js';
 
-import UpdateWindow from './components/UpdateWindow';
-import UpdateResWindow from './components/updateResWindow';
-import UpdateResWindowCus from './components/updateResWindowCus';
+import UpdateWindow from './components/UpdateWindow.js';
+import UpdateResWindow from './components/updateResWindow.js';
+import UpdateResWindowCus from './components/updateResWindowCus.js';
 
 function App() {
   return (
