@@ -32,7 +32,8 @@ jobs:
       working-directory: frontend
 
     - name: Build
-      run: npm run build
+      run: |
+        npm run build || (tail -n 100 /home/runner/.npm/_logs/$(date +"%Y-%m-%dT%H_%M_%S_")-debug.log && exit 1)
       working-directory: frontend
 
     - name: Run tests
