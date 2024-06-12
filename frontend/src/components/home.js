@@ -27,22 +27,22 @@ export default function Home() {
         <div className="">
           <div className="carousel-inner">
             <div className="carousel-item active img11">
-              <img src={require('./images/carouse/download.png')} className="yy" alt="Carousel image 1" />
+              <img src={require('./images/carouse/download.png')} className="yy" alt="Carousel slide 1" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/download (1).png')} className="yy" alt="Carousel image 2" />
+              <img src={require('./images/carouse/download (1).png')} className="yy" alt="Carousel slide 2" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images.png')} className="yy" alt="Carousel image 3" />
+              <img src={require('./images/carouse/images.png')} className="yy" alt="Carousel slide 3" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (1).png')} className="yy" alt="Carousel image 4" />
+              <img src={require('./images/carouse/images (1).png')} className="yy" alt="Carousel slide 4" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel image 5" />
+              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel slide 5" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel image 6" />
+              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel slide 6" />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -57,10 +57,10 @@ export default function Home() {
       </div>
 
       <div>
-        <img className="h" src={require('./images/home/4.png')} alt="Decorative" />
+        <img className="h" src={require('./images/home/4.png')} alt="" />
         <div className="rowww">
           <div className="column">
-            <img className="imgg" src={require('./images/home/mmmm.png')} alt="Decorative" />
+            <img className="imgg" src={require('./images/home/mmmm.png')} alt="" />
           </div>
           <div className="column">
             <p className="text2 coll">We can guarantee you have never received as many compliments as you will, after you book a visit with us.</p>
