@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+
 import axios from 'axios';
 
 const UpdateResWindowCus = () => {
@@ -164,19 +164,5 @@ const UpdateResWindowCus = () => {
   );
 };
 
-const Container = styled.div`
-  height: 100px;
-  width: 30%;
-  top: 25%;
-  right: 50%;
-  margin-right: 100px;
-  justify-content: center;
-  align-items: center;
-  background-color: #f4abab;
-  position: relative;
-  display: flex;
-  border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2);
-`;
 
 export default UpdateResWindowCus;

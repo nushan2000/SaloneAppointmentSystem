@@ -11,7 +11,7 @@ export default function Services() {
           <h1 className="font-title42">Services</h1>
         </div>
       </div>
-      <img className="l" src={require('./images/home/4.png')} alt="Services Image"></img>
+      <img className="l" src={require('./images/home/4.png')} alt="Salon interior" />
       <div className='textsty'>
         <p> Haircuts: $70 – $125</p>
         <p>Single Process: $80 – $110</p>
