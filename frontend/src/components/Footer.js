@@ -1,5 +1,8 @@
 import React from "react";
 import './css/footer.css';
+import logo from './images/logo.jpg';
+import instaIcon from './images/insta.png';
+import facebookIcon from './images/facebook.png';
 
 const Footer = () => {
   return (
@@ -17,13 +20,13 @@ const Footer = () => {
             </ol>
           </div>
           <div className="col">
-            {/* Add alt attribute to describe the image */}
-            <img className="img-log" src={require('./images/logo.jpg')} alt="Logo"></img>
+            {/* Use imported logo variable */}
+            <img className="img-log" src={logo} alt="Logo"></img>
           </div>
           <div className="col">
             <ol className="s">
               <li> Home</li>
-              <li> Salone</li>
+              <li> Salon</li>
               <li> Services</li>
               <li> Reservations</li>
               <li> Policies</li>
@@ -31,9 +34,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="ss">
-          {/* Add alt attributes to describe the images */}
-          <li><img className="img-log2" src={require('./images/insta.png')} alt="Instagram"></img></li>
-          <li><img className="img-log2" src={require('./images/facebook.png')} alt="Facebook"></img></li>
+          {/* Use imported icon variables */}
+          <li><img className="img-log2" src={instaIcon} alt="Instagram"></img></li>
+          <li><img className="img-log2" src={facebookIcon} alt="Facebook"></img></li>
         </div>
         <hr className="line"></hr>
       </div>

@@ -1,8 +1,22 @@
+import React from "react";
 import './css/home.css';
 import { useNavigate } from "react-router-dom";
+import home2Image from './images/home2.png';
+import carouselImage1 from './images/carouse/download.png';
+import carouselImage2 from './images/carouse/download (1).png';
+import carouselImage3 from './images/carouse/images.png';
+import carouselImage4 from './images/carouse/images (1).png';
+import carouselImage5 from './images/carouse/images (2).png';
+import serviceImage1 from './images/home/1.png';
+import serviceImage2 from './images/home/2.png';
+import serviceImage3 from './images/home/3.png';
+import serviceImage4 from './images/home/8.png';
+import salonInteriorImage from './images/home/4.png';
+import teamImage from './images/home/mmmm.png';
 
 export default function Home() {
   const navigate = useNavigate();
+
   return (
     <>
       <div>
@@ -20,29 +34,26 @@ export default function Home() {
       </div>
 
       <div className="home2">
-        <img src={require('./images/home2.png')} alt="Salon interior" />
+        <img src={home2Image} alt="Salon interior" />
       </div>
 
       <div className="color">
         <div className="">
           <div className="carousel-inner">
             <div className="carousel-item active img11">
-              <img src={require('./images/carouse/download.png')} className="yy" alt="Carousel slide 1" />
+              <img src={carouselImage1} className="yy" alt="Carousel slide 1" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/download (1).png')} className="yy" alt="Carousel slide 2" />
+              <img src={carouselImage2} className="yy" alt="Carousel slide 2" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images.png')} className="yy" alt="Carousel slide 3" />
+              <img src={carouselImage3} className="yy" alt="Carousel slide 3" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (1).png')} className="yy" alt="Carousel slide 4" />
+              <img src={carouselImage4} className="yy" alt="Carousel slide 4" />
             </div>
             <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel slide 5" />
-            </div>
-            <div className="carousel-item img11">
-              <img src={require('./images/carouse/images (2).png')} className="yy" alt="Carousel slide 6" />
+              <img src={carouselImage5} className="yy" alt="Carousel slide 5" />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -57,10 +68,10 @@ export default function Home() {
       </div>
 
       <div>
-        <img className="h" src={require('./images/home/4.png')} alt="" />
+        <img className="h" src={salonInteriorImage} alt="Salon Interior" />
         <div className="rowww">
           <div className="column">
-            <img className="imgg" src={require('./images/home/mmmm.png')} alt="" />
+            <img className="imgg" src={teamImage} alt="Team" />
           </div>
           <div className="column">
             <p className="text2 coll">We can guarantee you have never received as many compliments as you will, after you book a visit with us.</p>
@@ -70,7 +81,7 @@ export default function Home() {
         <div className="row1">
           <div className="column1">
             <div className="container">
-              <img src={require('./images/home/1.png')} alt="Service 1" className="image4 imgg2" />
+              <img src={serviceImage1} alt="Service 1" className="image4 imgg2" />
               <div className="overlay">
                 <div className="text"><button className="button">About</button></div>
               </div>
@@ -78,7 +89,7 @@ export default function Home() {
           </div>
           <div className="column1">
             <div className="container">
-              <img src={require('./images/home/2.png')} alt="Service 2" className="image4 imgg2" />
+              <img src={serviceImage2} alt="Service 2" className="image4 imgg2" />
               <div className="overlay">
                 <div className="text"><button className="button">Team</button></div>
               </div>
@@ -86,7 +97,7 @@ export default function Home() {
           </div>
           <div className="column1">
             <div className="container">
-              <img src={require('./images/home/3.png')} alt="Service 3" className="image4 imgg2" />
+              <img src={serviceImage3} alt="Service 3" className="image4 imgg2" />
               <div className="overlay">
                 <div className="text"><button className="button">Reservation</button></div>
               </div>
@@ -94,7 +105,7 @@ export default function Home() {
           </div>
           <div className="column1">
             <div className="container">
-              <img src={require('./images/home/8.png')} alt="Service 4" className="image4 imgg2" />
+              <img src={serviceImage4} alt="Service 4" className="image4 imgg2" />
               <div className="overlay">
                 <div className="text"><button className="button">Services</button></div>
               </div>

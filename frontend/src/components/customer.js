@@ -18,7 +18,7 @@ function CustomerPage() {
     const newReservation = {
       name, email, phonenumber, appointmentDate, departureTime, services, gender
     };
-    axios.post("http://localhost:8070/reservation/add", newReservation)
+    axios.post("http://localhost:8080/reservation/add", newReservation)
       .then(() => {
         alert("reservation added");
       }).catch((err) => {
@@ -40,7 +40,7 @@ function CustomerPage() {
 
   const fetchReservations = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/reservation/reservation');
+      const response = await axios.get('http://localhost:8080/reservation/reservation');
       setReservations(response.data);
     } catch (error) {
       console.error(error);
@@ -49,7 +49,7 @@ function CustomerPage() {
 
   const handleDeletereservation = async (reservationId) => {
     try {
-      const response = await axios.delete(`http://localhost:8070/reservation/reservation/${reservationId}`);
+      const response = await axios.delete(`http://localhost:8080/reservation/reservation/${reservationId}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -101,7 +101,7 @@ function CustomerPage() {
                   </td>
                   <td>
                     <button className='b1' onClick={() => handleDeletereservation(reservation._id)}>
-                      <img src={require('./images/Group 6.png')} alt="Delete" />
+                      <img src={require('./images/Group6.png')} alt="Delete" />
                     </button>
                   </td>
                 </tr>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
-
 import './css/admin.css';
 
 function Admin() {
@@ -21,7 +20,7 @@ function Admin() {
 
   async function fetchCustomers() {
     try {
-      const response = await axios.get('http://localhost:8070/customer/customers');
+      const response = await axios.get('http://localhost:8080/customer/customers');
       setCustomers(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +33,7 @@ function Admin() {
 
   async function fetchReservation() {
     try {
-      const response = await axios.get('http://localhost:8070/reservation/reservation');
+      const response = await axios.get('http://localhost:8080/reservation/reservation');
       setReservations(response.data);
     } catch (error) {
       console.error(error);
@@ -43,7 +42,7 @@ function Admin() {
 
   const handleDeleteCustomer = async (customerId) => {
     try {
-      await axios.delete(`http://localhost:8070/customer/customers/${customerId}`);
+      await axios.delete(`http://localhost:8080/customer/customers/${customerId}`);
       fetchCustomers();
     } catch (error) {
       console.error(error);
@@ -52,7 +51,7 @@ function Admin() {
 
   const handleDeleteReservation = async (reservationId) => {
     try {
-      await axios.delete(`http://localhost:8070/reservation/reservation/${reservationId}`);
+      await axios.delete(`http://localhost:8080/reservation/reservation/${reservationId}`);
       fetchReservation();
     } catch (error) {
       console.error(error);
@@ -75,6 +74,7 @@ function Admin() {
           </thead>
           <tbody>
             {customers.map(customer => (
+
               <tr key={customer._id}>
                 <td>{customer.name}</td>
                 <td>{customer.gender}</td>

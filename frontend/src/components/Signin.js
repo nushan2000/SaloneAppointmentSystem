@@ -17,7 +17,7 @@ const Signin = () => {
           'content-type': 'application/json',
         },
       };
-      const { data } = await axios.post('http://localhost:8070/customer/logi', {
+      const { data } = await axios.post('http://localhost:8080/customer/logi', {
         email,
         password,
       }, config);

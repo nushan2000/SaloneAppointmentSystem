@@ -24,7 +24,7 @@ export default function AddReservation(){
             name,email,phonenumber,appointmentDate,departureTime,services,gender
         }
 
-        axios.post("http://localhost:8070/reservation/add",newReservation).then(()=>{
+        axios.post("http://localhost:8080/reservation/add",newReservation).then(()=>{
           
             alert("reservation added");
             

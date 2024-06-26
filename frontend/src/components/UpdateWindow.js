@@ -28,7 +28,7 @@ const UpdateWindow = () => {
     
       // Send a PUT request to update the customer data
       await axios.put(
-        `http://localhost:8070/customer/update/${editedCustomer._id}`, editedCustomer
+        `http://localhost:8080/customer/update/${editedCustomer._id}`, editedCustomer
       );
       console.log("Customer updated successfully.");
 
