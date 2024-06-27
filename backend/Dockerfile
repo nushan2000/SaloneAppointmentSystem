@@ -19,5 +19,5 @@ COPY models ./models
 # Expose the port your app runs on
 EXPOSE 8080
 
-# Command to run your application
+# Command to run your applications
 CMD ["node", "server.js"]
