@@ -8,12 +8,14 @@ import Services from './components/Services.js';
 import Team from './components/Team.js';
 import Policies from './components/Policies.js';
 import Signin from './components/Signin.js';
-import Signup from './components/Signup.js';
-import Admin from './components/Admin.js';
-import Customer from './components/Customer.js';
+import Signup from './components/signup.js';
+import Admin from './components/admin.js';
+import Customer from './components/customer.js';
+import UpdateResWindow from './components/updateResWindow.js';
+import UpdateResWindowCus from './components/updateResWindowCus.js';
+
 import UpdateWindow from './components/UpdateWindow.js';
-import UpdateResWindow from './components/UpdateResWindow.js';
-import UpdateResWindowCus from './components/UpdateResWindowCus.js';
+
 
 function App() {
   return (
