@@ -1,0 +1,19 @@
+PS C:\kafka-docker> docker-compose up -d
+[+] Running 2/2
+ ✔ Container zookeeper  Started                                                                                    0.3s
+ ✔ Container kafka      Started                                                                                    0.3s
+PS C:\kafka-docker> docker-compose logs -f kafka
+kafka  | kafka 06:19:12.92 INFO  ==>
+kafka  | kafka 06:19:12.93 INFO  ==> Welcome to the Bitnami kafka container
+kafka  | kafka 06:19:12.93 INFO  ==> Subscribe to project updates by watching https://github.com/bitnami/containers
+kafka  | kafka 06:19:12.93 INFO  ==> NOTICE: Starting August 28th, 2025, only a limited subset of images/charts will remain available for free. Backup will be available for some time at the 'Bitnami Legacy' repository. More info at https://github.com/bitnami/containers/issues/83267
+kafka  | kafka 06:19:12.93 INFO  ==>
+kafka  | kafka 06:19:12.94 INFO  ==> ** Starting Kafka setup **
+kafka  | kafka 06:19:17.07 ERROR ==> Kafka requires at least one process role to be set. Set the environment variable KAFKA_CFG_PROCESS_ROLES to configure the process roles for Kafka.
+kafka  | /opt/bitnami/scripts/libkafka.sh: line 357: KAFKA_CFG_PROCESS_ROLES: unbound variable
+kafka  | kafka 06:19:17.07 ERROR ==> KRaft mode requires an unique node.id, please set the environment variable KAFKA_CFG_NODE_ID
+kafka  | /opt/bitnami/scripts/libkafka.sh: line 408: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: unbound variable
+kafka  | kafka 06:19:17.08 WARN  ==> Kafka has been configured with a PLAINTEXT listener, this setting is not recommended for production environments.
+PS C:\kafka-docker>
+
+
