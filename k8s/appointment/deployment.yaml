@@ -19,7 +19,7 @@ spec:
             - containerPort: 4000
           env:
             - name: PORT
-              value: "4001"
+              value: "4000"
             - name: JWT_SECRET
               value: "nushanhansana"
             - name: KAFKA_BROKER

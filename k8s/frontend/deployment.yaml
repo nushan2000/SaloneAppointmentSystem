@@ -19,8 +19,8 @@ spec:
             - containerPort: 80
           env:
             - name: REACT_APP_USER_SERVICE_URL
-              value: "http://user-service:4000"
+              value: "http://salone.local/auth"
             - name: REACT_APP_APPOINTMENT_SERVICE_URL
-              value: "http://appointment-service:4000"
+              value: "http://salone.local/appointment"
             - name: REACT_APP_NOTIFICATION_SERVICE_URL
-              value: "http://notification-service:4000"
+              value: "http://salone.local/notification"
