@@ -20,7 +20,7 @@ function Admin() {
 
   async function fetchCustomers() {
     try {
-      const response = await axios.get('http://localhost:8080/customer/customers');
+      const response = await axios.get(`${process.env.REACT_APP_USER_SERVICE_URL}/customers`);
       setCustomers(response.data);
     } catch (error) {
       console.error(error);
@@ -33,7 +33,7 @@ function Admin() {
 
   async function fetchReservation() {
     try {
-      const response = await axios.get('http://localhost:8080/reservation/reservation');
+      const response = await axios.get(`${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments`);
       setReservations(response.data);
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ function Admin() {
 
   const handleDeleteCustomer = async (customerId) => {
     try {
-      await axios.delete(`http://localhost:8080/customer/customers/${customerId}`);
+      await axios.delete(`${process.env.REACT_APP_USER_SERVICE_URL}/customers/${customerId}`);
       fetchCustomers();
     } catch (error) {
       console.error(error);
@@ -51,7 +51,7 @@ function Admin() {
 
   const handleDeleteReservation = async (reservationId) => {
     try {
-      await axios.delete(`http://localhost:8080/reservation/reservation/${reservationId}`);
+      await axios.delete(`${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments/${reservationId}`);
       fetchReservation();
     } catch (error) {
       console.error(error);

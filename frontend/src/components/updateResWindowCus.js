@@ -33,7 +33,7 @@ const UpdateResWindowCus = () => {
     
       // Send a PUT request to update the reservation data
       await axios.put(
-        `http://localhost:8080/reservation/update/${editedreservation._id}`,editedreservation
+        `${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments/${editedreservation._id}`, editedreservation
       );
       console.log("reservation updated successfully.");
 

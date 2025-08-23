@@ -22,8 +22,8 @@ export default function Signup() {
       phonenumber,
       password
     };
-    
-    axios.post("http://localhost:8080/customer/signup", newCustomer)
+
+    axios.post(`${process.env.REACT_APP_CUSTOMER_SERVICE_URL}/signup`, newCustomer)
       .then(() => {
         alert("User added");
         navigate('/signin');

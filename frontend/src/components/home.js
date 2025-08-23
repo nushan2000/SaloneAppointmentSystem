@@ -14,13 +14,15 @@ import serviceImage4 from './images/home/8.png';
 import salonInteriorImage from './images/home/4.png';
 import teamImage from './images/home/mmmm.png';
 
-export default function Home() {
+export default function Home() {  
   const navigate = useNavigate();
+  
 
   return (
     <>
       <div>
         <div className="hero-image">
+        
           <div className="fade-in-image">
             <div className="group"></div>
             <div className="hero-text">

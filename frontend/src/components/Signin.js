@@ -2,11 +2,30 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './css/signin.css';
 import { useNavigate } from 'react-router-dom';
+import { io } from "socket.io-client";
+import { useContext } from "react";
+import { NotificationContext } from "./NotificationContext";
+import { useEffect } from 'react';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+   const { addNotification } = useContext(NotificationContext); // ✅ use function to add
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_NOTIFICATION_SERVICE_URL}`);
+
+    socket.on("notification", (data) => {
+      addNotification(data); // ✅ correctly use the function
+      console.log("New notification:", data);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [addNotification]);
+  
 
   const sendData = async (e) => {
     e.preventDefault();
@@ -17,11 +36,11 @@ const Signin = () => {
           'content-type': 'application/json',
         },
       };
-      const { data } = await axios.post('http://localhost:8080/customer/logi', {
+      const { data } = await axios.post(`${process.env.REACT_APP_USER_SERVICE_URL}/login`, {
         email,
         password,
       }, config);
-      
+
       localStorage.setItem('userInfo', JSON.stringify(data));
       if (data.isAdmin) {
         navigate('/admin'); // Redirect to the admin page

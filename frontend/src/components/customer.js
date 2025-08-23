@@ -3,7 +3,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import './css/customer.css';
-
+import { io } from "socket.io-client";
+import { NotificationContext } from "./NotificationContext";
+import { useContext } from 'react';
 function CustomerPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,13 +14,30 @@ function CustomerPage() {
   const [departureTime, setdepartureTime] = useState("");
   const [services, setservices] = useState("");
   const [gender, setgender] = useState("");
+  const { notifications } = useContext(NotificationContext);
+
+// useEffect(() => {
+//     // Connect to notification service after component mounts
+//     const socket = io(`${process.env.REACT_APP_NOTIFICATION_SERVICE_URL}`);
+
+//     // Listen for notifications
+//     socket.on("notification", (data) => {
+//       setNotifications((prev) => [...prev, data]);
+//       console.log("New notification:", data);
+//     });
+
+//     // Cleanup on unmount
+//     return () => {
+//       socket.disconnect();
+//     };
+//   }, []);
 
   function sendData(e) {
     e.preventDefault();
     const newReservation = {
       name, email, phonenumber, appointmentDate, departureTime, services, gender
     };
-    axios.post("http://localhost:8080/reservation/add", newReservation)
+    axios.post(`${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments`, newReservation)
       .then(() => {
         alert("reservation added");
       }).catch((err) => {
@@ -28,7 +47,8 @@ function CustomerPage() {
 
   const [reservations, setReservations] = useState([]);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  
+  console.log("user",userInfo.user);
+
   const handleLogout = () => {
     localStorage.removeItem('userInfo');
     window.location.href = '/signin';
@@ -40,7 +60,7 @@ function CustomerPage() {
 
   const fetchReservations = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/reservation/reservation');
+      const response = await axios.get(`${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments`);
       setReservations(response.data);
     } catch (error) {
       console.error(error);
@@ -49,7 +69,7 @@ function CustomerPage() {
 
   const handleDeletereservation = async (reservationId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/reservation/reservation/${reservationId}`);
+      const response = await axios.delete(`${process.env.REACT_APP_APPOINTMENT_SERVICE_URL}/appointments/${reservationId}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -58,14 +78,20 @@ function CustomerPage() {
   };
 
   return (
-    <div className='cus pagee'>
+    <div className='customer-page'>
+      <div>
+      <h2>Notifications</h2>
+      {notifications.map((n, index) => (
+        <div key={index}>{n.message}</div>
+      ))}
+    </div>
       <div>
         <button className='bu' onClick={handleLogout}>Log Out</button>
         <div className='group3'></div>
         <div className='lk'> 
           <h1 className="font-title81">Welcome</h1>
-          <h1>{userInfo.name}</h1>
-          <p>Email: {userInfo.email}</p>
+          <h1>{userInfo.user.name}</h1>
+          <p>Email: {userInfo.user.email}</p>
         </div>
         <div className="hero-image81">  
           <div className="hero-text81"></div>
@@ -85,7 +111,7 @@ function CustomerPage() {
               </tr>
             </thead>
             <tbody>
-              {reservations.filter(reservation => reservation.email === userInfo.email).map((reservation) => (
+              {reservations.filter(reservation => reservation.email === userInfo.user.email).map((reservation) => (
                 <tr key={reservation._id}>
                   <td>{reservation.name}</td>
                   <td>{reservation.gender}</td>

@@ -16,4 +16,13 @@ spec:
         - name: auth
           image: nushan2000/auth-service:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 4000
+          env:
+            - name: PORT
+              value: "4000"
+            - name: JWT_SECRET
+              value: "nushanhansana"
+            - name: KAFKA_BROKER
+              value: "kafka-service:9092"
+            - name: MONGO_URI_AUTH
+              value: "mongodb://mongodb:27017/salone"

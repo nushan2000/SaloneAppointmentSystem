@@ -15,11 +15,12 @@ import UpdateResWindow from './components/updateResWindow.js';
 import UpdateResWindowCus from './components/updateResWindowCus.js';
 
 import UpdateWindow from './components/UpdateWindow.js';
+import { NotificationProvider } from "./components/NotificationContext.js";
 
 
 function App() {
   return (
-
+ <NotificationProvider>
       <div>
         <Router>
           <Navbar />
@@ -40,9 +41,10 @@ function App() {
           </Routes>
            <Footer />
         </Router>
-    
      
       </div>
+     </NotificationProvider>
+
   );
 }
 
