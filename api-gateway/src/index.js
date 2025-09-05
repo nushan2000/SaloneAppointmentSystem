@@ -1,19 +1,21 @@
 const express = require('express');
-const { verifyJWT } = require('./jwt');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const cors = require('cors');
+
+const authRoutes = require('./routes/auth');
+const appointmentRoutes = require('./routes/appointment');
+const notificationRoutes = require('./routes/notification');
+
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-const AUTH_URL = process.env.AUTH_URL;
-const SALON_URL = process.env.SALON_URL;
-const RESERVATION_URL = process.env.RESERVATION_URL;
+// Mount service routes
+app.use('/auth', authRoutes);
+app.use('/appointment', appointmentRoutes);
+app.use('/notification', notificationRoutes);
 
-// Public
-app.use('/auth', createProxyMiddleware({ target: AUTH_URL, changeOrigin: true }));
-
-// Protected
-app.use('/salon', verifyJWT, createProxyMiddleware({ target: SALON_URL, changeOrigin: true }));
-app.use('/reservation', verifyJWT, createProxyMiddleware({ target: RESERVATION_URL, changeOrigin: true }));
-
-app.listen(4000, () => console.log('API Gateway on :4000'));
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`API Gateway running on port ${PORT}`);
+});
