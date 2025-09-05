@@ -7,6 +7,12 @@ RUN npm install
 COPY . .
 RUN npm run build
 
+# Stage 2: Serve with nginx
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+
+# Remove default nginx index page
+RUN rm -rf ./*
 
 # Expose Nginx port
 EXPOSE 3000
