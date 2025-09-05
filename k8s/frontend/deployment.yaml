@@ -16,11 +16,11 @@ spec:
         - name: frontend
           image: nushan2000/frontend:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: REACT_APP_USER_SERVICE_URL
-              value: "http://salone.local/auth"
+              value: "http://localhost:4000"
             - name: REACT_APP_APPOINTMENT_SERVICE_URL
-              value: "http://salone.local/appointment"
+              value: "http://appointment-service:4001"
             - name: REACT_APP_NOTIFICATION_SERVICE_URL
-              value: "http://salone.local/notification"
+              value: "http://notification-service:4002"

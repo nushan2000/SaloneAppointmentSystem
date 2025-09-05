@@ -23,7 +23,7 @@ export default function Signup() {
       password
     };
 
-    axios.post(`${process.env.REACT_APP_CUSTOMER_SERVICE_URL}/signup`, newCustomer)
+    axios.post(`${process.env.REACT_APP_USER_SERVICE_URL}/signup`, newCustomer)
       .then(() => {
         alert("User added");
         navigate('/signin');

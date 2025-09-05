@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const { Kafka } = require("kafkajs");
 const cors = require("cors");
 const Customer = require("./models/customer"); // make sure path is correct
-const authMiddleware = require("./middleware/auth"); // JWT verification middleware
+// const authMiddleware = require("./middleware/auth"); // JWT verification middleware
 
 const app = express();
 app.use(cors({
@@ -92,7 +92,7 @@ app.post("/login", async (req, res) => {
 });
 
 // --- Get Profile (protected) ---
-app.get("/profile", authMiddleware, async (req, res) => {
+app.get("/profile", async (req, res) => {
   try {
     const customer = await Customer.findById(req.customer.id).select("-password");
     if (!customer) return res.status(404).json({ message: "Customer not found" });
