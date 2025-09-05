@@ -6,20 +6,20 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: appointment
+      app: appointment-service
   template:
     metadata:
       labels:
-        app: appointment
+        app: appointment-service
     spec:
       containers:
-        - name: appointment
+        - name: appointment-service
           image: nushan2000/appointment-service:latest
           ports:
-            - containerPort: 4000
+            - containerPort: 4002
           env:
             - name: PORT
-              value: "4000"
+              value: "4002"
             - name: JWT_SECRET
               value: "nushanhansana"
             - name: KAFKA_BROKER

@@ -4,8 +4,8 @@ metadata:
   name: appointment-service
 spec:
   selector:
-    app: appointment
+    app: appointment-service
   ports:
-    - port: 4000
-      targetPort: 4000
+    - port: 4002
+      targetPort: 4002
   type: ClusterIP
