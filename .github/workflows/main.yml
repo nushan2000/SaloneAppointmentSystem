@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [frontend, auth-service, appointment-service, notification-service]
+        service: [frontend,api-gateway, auth-service, appointment-service, notification-service]
 
     steps:
       - name: Checkout code
