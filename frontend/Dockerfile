@@ -7,14 +7,13 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve with nginx
+# Stage 2: Serve with Nginx
 FROM nginx:alpine
-WORKDIR /usr/share/nginx/html
 
-# Remove default nginx index page
-RUN rm -rf ./*
+# Copy build files to nginx
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose Nginx port
-EXPOSE 3000
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
