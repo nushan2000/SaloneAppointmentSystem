@@ -1,11 +1,12 @@
-// api-gateway/server.js
 import express from "express";
 import proxy from "express-http-proxy";
 
 const app = express();
 
-app.use("/auth", proxy("http://localhost:4000"));
-app.use("/appointments", proxy("http://localhost:4001"));
-app.use("/notifications", proxy("http://localhost:4002"));
+// Use service names from docker-compose
+app.use("/auth", proxy("http://auth-service:5000"));
+app.use("/appointments", proxy("http://appointment-service:5001"));
+app.use("/notifications", proxy("http://notification-service:5002"));
 
-app.listen(3000, () => console.log("API Gateway running on 3000"));
+const PORT = 4000;
+app.listen(PORT, () => console.log(`API Gateway running on ${PORT}`));

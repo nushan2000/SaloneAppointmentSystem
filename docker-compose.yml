@@ -1,35 +1,46 @@
-version: '3'
+version: '3.8'
 services:
-  mongo:
-    image: mongo
-    container_name: mongo
+  api-gateway:
+    build: ./api-gateway
     ports:
-      - "27017:27017"
-    volumes:
-      - ./data:/data/db
+      - "4000:4000"
+    depends_on:
+      - auth-service
+      - appointment-service
     networks:
-      - mern-app-network
+      - app-net
 
-  backend:
-    build: ./backend
-    container_name: backend
+  auth-service:
+    build: ./auth-service
     ports:
-      - "8080:8080"
-    environment:
-      - MONGO_URI=mongodb+srv://eanushan:TDe8QaxuYHpcxNNu@cluster0.lfqxwj4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-    networks:
-      - mern-app-network
+      - "5000:5000"
+  appointment-service:
+    build: ./appointment-service
+    ports:
+      - "5001:5001"
+
 
   frontend:
     build: ./frontend
-    container_name: frontend
     ports:
-      - "3000:3000"
-    networks:
-      - mern-app-network
+      - "3000:80"
     depends_on:
-      - backend
+      - api-gateway
+    networks:
+      - app-net
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-net
 
 networks:
-  mern-app-network:
-    driver: bridge
+  app-net:
+
+volumes:
+  mongo-data:
