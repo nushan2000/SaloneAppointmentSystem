@@ -1,9 +1,8 @@
-import express from "express";
-import proxy from "express-http-proxy";
+const express = require("express");
+const proxy = require("express-http-proxy");
 
 const app = express();
 
-// Use service names from docker-compose
 app.use("/auth", proxy("http://auth-service:5000"));
 app.use("/appointments", proxy("http://appointment-service:5001"));
 app.use("/notifications", proxy("http://notification-service:5002"));
