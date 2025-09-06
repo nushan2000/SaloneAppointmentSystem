@@ -3,15 +3,30 @@ import mongoose from "mongoose";
 import { Kafka } from "kafkajs";
 import dotenv from "dotenv";
 import cors from "cors";
+
 dotenv.config();
+
 const app = express();
+
+// --------------------
+// CORS Configuration
+// --------------------
 app.use(cors({
-  origin: process.env.ORIGIN || "http://localhost:3000", // your frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: process.env.ORIGIN || "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
+
+// --------------------
+// Middleware
+// --------------------
 app.use(express.json());
 
+// --------------------
+// Mongoose Schema
+// --------------------
 const appointmentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   gender: String,
@@ -22,26 +37,31 @@ const appointmentSchema = new mongoose.Schema({
   services: String
 }, { timestamps: true });
 
-// Wrap everything in async start function
+// --------------------
+// Start Server Function
+// --------------------
 async function startServer() {
   try {
     // MongoDB connection
-    await mongoose.connect(process.env.MONGO_URI_APPOINTMENTS || "mongodb://localhost:27017/Salone");
+    const mongoUri = process.env.MONGO_URI_APPOINTMENTS;
+    await mongoose.connect(mongoUri);
     console.log("✅ Connected to MongoDB");
 
     // Mongoose model
     const Appointment = mongoose.model("Appointment", appointmentSchema, "AppointmentServices");
 
     // Kafka setup
-    const kafka = new Kafka({
-      clientId: "appointment-service",
-      brokers: [process.env.KAFKA_BROKER || "localhost:9092"]
-    });
+    const kafkaBrokers = [process.env.KAFKA_BROKER || "kafka:9092"];
+    const kafka = new Kafka({ clientId: "appointment-service", brokers: kafkaBrokers });
     const producer = kafka.producer();
     await producer.connect();
     console.log("✅ Kafka producer connected");
 
+    // --------------------
     // Routes
+    // --------------------
+
+    // Create appointment
     app.post("/appointments", async (req, res) => {
       try {
         const appointment = new Appointment(req.body);
@@ -60,6 +80,7 @@ async function startServer() {
       }
     });
 
+    // Get all appointments
     app.get("/appointments", async (req, res) => {
       try {
         const appointments = await Appointment.find();
@@ -70,6 +91,7 @@ async function startServer() {
       }
     });
 
+    // Update appointment by ID
     app.put("/appointments/:id", async (req, res) => {
       try {
         const updatedAppointment = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -106,14 +128,15 @@ async function startServer() {
     });
 
     // --------------------
-    // Start server
+    // Start Express Server
     // --------------------
-    const PORT = process.env.PORT || 4001;
-    app.listen(PORT, () => console.log(`✅ Appointment Service running on ${PORT}`));
+    const PORT = process.env.PORT || 5001;
+    app.listen(PORT, () => console.log(`✅ Appointment Service running on port ${PORT}`));
 
   } catch (err) {
     console.error("❌ Failed to start server:", err);
   }
 }
 
+// Run the server
 startServer();
