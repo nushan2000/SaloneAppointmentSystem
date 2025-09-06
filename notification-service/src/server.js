@@ -5,20 +5,20 @@ import { Server } from "socket.io";
 import cors from "cors";
 const app = express();
 app.use(cors({
-  origin: process.env.ORIGIN || "http://localhost:3000", // your frontend URL
+  origin: process.env.ORIGIN, // your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: process.env.ORIGIN || "http://localhost:3000" }, // allow frontend to connect
+  cors: { origin: process.env.ORIGIN }, // allow frontend to connect
 });
 
 io.on("connection", (socket) => {
   console.log("Frontend connected:", socket.id);
 });
 
-const kafka = new Kafka({ clientId: "notification-service", brokers: [process.env.KAFKA_BROKER || "localhost:9092"] });
+const kafka = new Kafka({ clientId: "notification-service", brokers: [process.env.KAFKA_BROKER] });
 const consumer = kafka.consumer({ groupId: "notifications" });
 
 await consumer.connect();
@@ -45,4 +45,4 @@ await consumer.run({
   },
 });
 
-server.listen(4002, () => console.log("Notification service running on port 4002"));
+server.listen(process.env.PORT, () => console.log(`Notification service running on port ${process.env.PORT}`));

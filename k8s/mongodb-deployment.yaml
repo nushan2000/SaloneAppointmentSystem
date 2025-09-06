@@ -14,15 +14,9 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:5
+          image: mongo:6.0
           ports:
             - containerPort: 27017
-          volumeMounts:
-            - name: mongo-data
-              mountPath: /data/db
-      volumes:
-        - name: mongo-data
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

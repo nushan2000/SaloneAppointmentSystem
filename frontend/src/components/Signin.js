@@ -40,6 +40,7 @@ const Signin = () => {
         email,
         password,
       }, config);
+        console.log("url",process.env.REACT_APP_USER_SERVICE_URL);
 
       localStorage.setItem('userInfo', JSON.stringify(data));
       if (data.isAdmin) {

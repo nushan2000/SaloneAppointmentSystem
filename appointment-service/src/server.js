@@ -18,11 +18,17 @@ app.use(cors({
   credentials: true
 }));
 
-
 // --------------------
 // Middleware
 // --------------------
 app.use(express.json());
+
+// --------------------
+// Health Check Route
+// --------------------
+app.get("/test", (req, res) => {
+  res.status(200).json({ message: "Server is alive!" });
+});
 
 // --------------------
 // Mongoose Schema
@@ -43,22 +49,29 @@ const appointmentSchema = new mongoose.Schema({
 async function startServer() {
   try {
     // MongoDB connection
-    const mongoUri = process.env.MONGO_URI_APPOINTMENTS;
+    const mongoUri = process.env.MONGO_URI_APPOINTMENTS || "mongodb://localhost:27017/salone";
     await mongoose.connect(mongoUri);
     console.log("✅ Connected to MongoDB");
 
     // Mongoose model
     const Appointment = mongoose.model("Appointment", appointmentSchema, "AppointmentServices");
 
-    // Kafka setup
-    const kafkaBrokers = [process.env.KAFKA_BROKER || "kafka:9092"];
-    const kafka = new Kafka({ clientId: "appointment-service", brokers: kafkaBrokers });
-    const producer = kafka.producer();
-    await producer.connect();
-    console.log("✅ Kafka producer connected");
+    // Kafka setup (optional)
+    // let producer = null;
+    // try {
+    //   const kafka = new Kafka({
+    //     clientId: "appointment-service",
+    //     brokers: [process.env.KAFKA_BROKER || "kafka:9092"]
+    //   });
+    //   producer = kafka.producer();
+    //   await producer.connect();
+    //   console.log("✅ Kafka producer connected");
+    // } catch (err) {
+    //   console.warn("⚠️ Kafka not connected, continuing without Kafka:", err.message);
+    // }
 
     // --------------------
-    // Routes
+    // Appointment Routes
     // --------------------
 
     // Create appointment
@@ -67,10 +80,12 @@ async function startServer() {
         const appointment = new Appointment(req.body);
         await appointment.save();
 
-        await producer.send({
-          topic: "appointment-created",
-          messages: [{ value: JSON.stringify(appointment) }]
-        });
+        // if (producer) {
+        //   await producer.send({
+        //     topic: "appointment-created",
+        //     messages: [{ value: JSON.stringify(appointment) }]
+        //   });
+        // }
 
         console.log("Saved appointment:", appointment);
         res.status(201).json({ message: "Appointment added successfully", appointment });
@@ -97,10 +112,12 @@ async function startServer() {
         const updatedAppointment = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedAppointment) return res.status(404).json({ message: "Appointment not found" });
 
-        await producer.send({
-          topic: "appointment-updated",
-          messages: [{ value: JSON.stringify(updatedAppointment) }]
-        });
+        // if (producer) {
+        //   await producer.send({
+        //     topic: "appointment-updated",
+        //     messages: [{ value: JSON.stringify(updatedAppointment) }]
+        //   });
+        // }
 
         res.status(200).json({ message: "Appointment updated successfully", appointment: updatedAppointment });
       } catch (err) {
@@ -115,10 +132,12 @@ async function startServer() {
         const deletedAppointment = await Appointment.findByIdAndDelete(req.params.id);
         if (!deletedAppointment) return res.status(404).json({ message: "Appointment not found" });
 
-        await producer.send({
-          topic: "appointment-deleted",
-          messages: [{ value: JSON.stringify(deletedAppointment) }]
-        });
+        // if (producer) {
+        //   await producer.send({
+        //     topic: "appointment-deleted",
+        //     messages: [{ value: JSON.stringify(deletedAppointment) }]
+        //   });
+        // }
 
         res.json({ message: "Appointment deleted successfully" });
       } catch (err) {
